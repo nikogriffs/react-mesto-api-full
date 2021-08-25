@@ -52,7 +52,7 @@ function Register(props) {
             </form>
 
             <div className="authorization__menu-link">
-                <span>Уже зарегистрированы? </span><Link to="/sign-in" className="authorization__link">Войти</Link>
+                <span>Уже зарегистрированы? </span><Link to="/signin" className="authorization__link">Войти</Link>
             </div>
         </div>
     );

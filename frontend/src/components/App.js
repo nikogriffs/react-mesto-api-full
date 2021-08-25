@@ -140,7 +140,7 @@ function App() {
   function handleRegister(email, password) {
     auth.register(email, password)
       .then(() => {
-        history.push('/sign-in');
+        history.push('/signin');
         setIsInfoTooltipPopupOpen(true);
         setIsSuccess(true);
       })
