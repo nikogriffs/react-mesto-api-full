@@ -1,0 +1,7 @@
+.profile__edit {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  margin: 22px 0 10px;
+  padding: 0;
+}
