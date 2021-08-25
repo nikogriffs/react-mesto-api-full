@@ -10,12 +10,12 @@ function Header(props) {
                 {props.loggedIn ?
                     <>
                         <p className="header__email">{props.email}</p>
-                        <NavLink to="/sign-in" className="header__link header__link_logged" onClick={props.onSignOut} >Выйти</NavLink>
+                        <NavLink to="/signin" className="header__link header__link_logged" onClick={props.onSignOut} >Выйти</NavLink>
                     </>
                     :
                     <>
-                        <NavLink to="/sign-up" className="header__link" activeStyle={{ display: 'none' }} >Регистрация</NavLink>
-                        <NavLink to="/sign-in" className="header__link" activeStyle={{ display: 'none' }}>Войти</NavLink>
+                        <NavLink to="/signup" className="header__link" activeStyle={{ display: 'none' }} >Регистрация</NavLink>
+                        <NavLink to="/signin" className="header__link" activeStyle={{ display: 'none' }}>Войти</NavLink>
                     </>}
             </nav>
         </header>
