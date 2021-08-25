@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 const express = require('express');
 const mongoose = require('mongoose');
-const helmet = require('helmet');
+// const helmet = require('helmet');
 const cookieParser = require('cookie-parser');
 const { celebrate, Joi, isCelebrateError } = require('celebrate');
 const cors = require('cors');
@@ -52,7 +52,7 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
   useFindAndModify: false,
 });
 
-app.use(helmet());
+// app.use(helmet());
 app.use(cookieParser());
 
 app.use(requestLogger);
