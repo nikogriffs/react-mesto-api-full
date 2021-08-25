@@ -1,7 +1,7 @@
 class Api {
   constructor(options) {
     this._address = options.baseUrl;
-    // this._token = options.headers.authorization;
+    this._token = options.headers.authorization;
   }
 
   // Метод проверки ответа от сервера
@@ -17,7 +17,8 @@ class Api {
   getInitialCards() {
     return fetch(`${this._address}/cards`, {
       headers: {
-        authorization: this._token
+        authorization: this._token,
+        'Content-Type': 'application/json'
       }
     })
       .then(this._checkAnswer)
@@ -27,7 +28,8 @@ class Api {
   getUserInfo() {
     return fetch(`${this._address}/users/me`, {
       headers: {
-        authorization: this._token
+        authorization: this._token,
+        'Content-Type': 'application/json'
       }
     })
       .then(this._checkAnswer)
@@ -64,7 +66,8 @@ class Api {
     return fetch(`${this._address}/cards/likes/${cardId}`, {
       method: isLiked ? 'DELETE' : 'PUT',
       headers: {
-        authorization: this._token
+        authorization: this._token,
+        'Content-Type': 'application/json'
       }
     })
       .then(this._checkAnswer)
@@ -75,7 +78,8 @@ class Api {
     return fetch(`${this._address}/cards/${cardId}`, {
       method: 'DELETE',
       headers: {
-        authorization: this._token
+        authorization: this._token,
+        'Content-Type': 'application/json'
       }
     })
       .then(this._checkAnswer)
@@ -97,9 +101,9 @@ class Api {
 
 const api = new Api({
   baseUrl: 'http://api.mesto.nikogriffs.nomoredomains.work',
-  // headers: {
-  //   authorization: '8e28ef26-30e7-43b7-b459-31efb2dce5c1'
-  // }
+  headers: {
+    authorization: `Bearer ${token}`
+  }
 });
 
 export default api;
