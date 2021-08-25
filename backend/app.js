@@ -10,8 +10,25 @@ const NotFoundError = require('./errors/not-found-err');
 const BadRequestError = require('./errors/bad-request-err');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
+const allowedCors = [
+  'https://praktikum.tk',
+  'http://praktikum.tk',
+  'localhost:3000'
+];
+
 const { PORT = 3000 } = process.env;
 const app = express();
+
+app.use(function (req, res, next) {
+  const { origin } = req.headers; // Сохраняем источник запроса в переменную origin
+  // проверяем, что источник запроса есть среди разрешённых
+  if (allowedCors.includes(origin)) {
+    res.header('Access-Control-Allow-Origin', origin);
+  }
+
+  next();
+});
+
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
