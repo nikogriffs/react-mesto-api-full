@@ -96,7 +96,7 @@ class Api {
 }
 
 const api = new Api({
-  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-24',
+  baseUrl: 'http://mesto.nikogriffs.nomoredomains.monster',
   headers: {
     authorization: '8e28ef26-30e7-43b7-b459-31efb2dce5c1'
   }

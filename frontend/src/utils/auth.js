@@ -1,4 +1,4 @@
-export const BASE_URL = 'https://auth.nomoreparties.co';
+export const BASE_URL = 'http://mesto.nikogriffs.nomoredomains.monster';
 
 const checkAnswer = (res) => {
     if (res.ok) {
