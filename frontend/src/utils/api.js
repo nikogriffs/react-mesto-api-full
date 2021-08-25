@@ -1,7 +1,7 @@
 class Api {
   constructor(options) {
     this._address = options.baseUrl;
-    this._token = options.headers.authorization;
+    // this._token = options.headers.authorization;
   }
 
   // Метод проверки ответа от сервера
