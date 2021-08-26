@@ -33,7 +33,7 @@ function App() {
   const history = useHistory();
 
   React.useEffect(() => {
-    Promise.all([api.getUserInfo(), api.getInitialCards()])
+    Promise.all([api.getUserInfo(token), api.getInitialCards(token)])
       .then(([user, cards]) => {
         setCurrentUser(user);
         setCards(cards);
@@ -59,7 +59,7 @@ function App() {
   }, [history]);
 
   function handleUpdateUser(data) {
-    api.setUserInfo(data.name, data.about)
+    api.setUserInfo(data.name, data.about, token)
       .then((user) => {
         setCurrentUser(user);
         closeAllPopups();
@@ -118,7 +118,7 @@ function App() {
   function handleCardLike(card) {
     const isLiked = card.likes.some(like => like._id === currentUser._id);
 
-    api.changeLikeCardStatus(card._id, isLiked)
+    api.changeLikeCardStatus(card._id, isLiked, token)
       .then((newCard) => {
         setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
       })
@@ -128,7 +128,7 @@ function App() {
   }
 
   function handleCardDelete(card) {
-    api.delCard(card._id)
+    api.delCard(card._id, token)
       .then(() => {
         setCards((state) => state.filter((c) => c._id !== card._id));
       })
