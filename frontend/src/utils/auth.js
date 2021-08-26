@@ -33,15 +33,15 @@ export const authorize = (email, password) => {
         .then(checkAnswer)
 };
 
-export const checkToken = (token) => {
-    return fetch(`${BASE_URL}/users/me`, {
-        method: 'GET',
-        credentials: 'include',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`,
-        }
-    })
-        .then(checkAnswer)
-}
+// export const checkToken = (token) => {
+//     return fetch(`${BASE_URL}/users/me`, {
+//         method: 'GET',
+//         credentials: 'include',
+//         headers: {
+//             'Accept': 'application/json',
+//             'Content-Type': 'application/json',
+//             'Authorization': `Bearer ${token}`,
+//         }
+//     })
+//         .then(checkAnswer)
+// }

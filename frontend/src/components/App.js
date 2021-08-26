@@ -43,20 +43,20 @@ function App() {
       });
   }, []);
 
-  React.useEffect(() => {
-    if (localStorage.getItem('jwt')) {
-      const jwt = localStorage.getItem('jwt');
-      auth.checkToken(jwt)
-        .then((res) => {
-          setLoggedIn(true);
-          history.push('/');
-          setEmail(res.data.email);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
-  }, [history]);
+  // React.useEffect(() => {
+  //   if (localStorage.getItem('jwt')) {
+  //     const jwt = localStorage.getItem('jwt');
+  //     auth.checkToken(jwt)
+  //       .then((res) => {
+  //         setLoggedIn(true);
+  //         history.push('/');
+  //         setEmail(res.data.email);
+  //       })
+  //       .catch((err) => {
+  //         console.log(err);
+  //       });
+  //   }
+  // }, [history]);
 
   function handleUpdateUser(data) {
     api.setUserInfo(data.name, data.about)
@@ -154,7 +154,7 @@ function App() {
   function handleLogin(email, password) {
     auth.authorize(email, password)
       .then((res) => {
-        localStorage.setItem('jwt', res.token);
+        // localStorage.setItem('jwt', res.token);
         setLoggedIn(true);
         history.push('/');
         setEmail(email);
@@ -167,7 +167,7 @@ function App() {
   }
 
   function handleSignOut() {
-    localStorage.removeItem('jwt');
+    // localStorage.removeItem('jwt');
     setLoggedIn(false);
     history.push('/signin');
   }
