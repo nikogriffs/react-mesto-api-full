@@ -46,15 +46,17 @@ function App() {
   }, []);
 
   React.useEffect(() => {
-    auth.checkToken()
-      .then((res) => {
-        setLoggedIn(true);
-        // history.push('/');
-        setEmail(res.email);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    if (loggedIn) {
+      auth.checkToken()
+        .then((res) => {
+          setLoggedIn(true);
+          // history.push('/');
+          setEmail(res.email);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   }, [history]);
 
   function handleUpdateUser(data) {
@@ -199,10 +201,10 @@ function App() {
           <Login onLogin={handleLogin} />
         </Route>
 
-        <Route>
-          {loggedIn ? <Redirect to="/" /> : <Redirect to="/signin" />}
+        {/* <Route> */} 
+          {/* {loggedIn ? <Redirect to="/" /> : <Redirect to="/signin" />} */}
           {/* {!loggedIn && <Redirect to="/signin" />} */}
-        </Route>
+        {/* </Route> */}
 
       </Switch>
 
