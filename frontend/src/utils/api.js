@@ -17,7 +17,7 @@ class Api {
   getInitialCards(token) {
     return fetch(`${this._address}/cards`, {
       headers: {
-        authorization: `Bearer ${token}`,
+        // authorization: `Bearer ${token}`,
         'Content-Type': 'application/json'
       }
     })
@@ -28,7 +28,7 @@ class Api {
   getUserInfo(token) {
     return fetch(`${this._address}/users/me`, {
       headers: {
-        authorization: `Bearer ${token}`,
+        // authorization: `Bearer ${token}`,
         'Content-Type': 'application/json'
       }
     })
@@ -40,7 +40,7 @@ class Api {
     return fetch(`${this._address}/users/me`, {
       method: 'PATCH',
       headers: {
-        authorization: `Bearer ${token}`,
+        // authorization: `Bearer ${token}`,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({ name: name, about: job })
