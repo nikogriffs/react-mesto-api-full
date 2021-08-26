@@ -1,3 +1,4 @@
+const { NODE_ENV, JWT_SECRET } = process.env;
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { Error } = require('mongoose');
@@ -95,9 +96,9 @@ module.exports.login = (req, res, next) => {
 
   User.findUserByCredentials(email, password)
     .then((user) => {
-      const token = jwt.sign({ _id: user._id }, 'some-secret-key', { expiresIn: '7d' });
+      const token = jwt.sign({ _id: user._id }, NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret', { expiresIn: '7d' });
 
-      res.cookie('jwt', token, { httpOnly: true, sameSite: true }).send({ token });
+      res.cookie('jwt', token, { httpOnly: true }).send({ token });
     })
     .catch(() => {
       throw new UnauthorizedError('Передан неверный логин или пароль');
