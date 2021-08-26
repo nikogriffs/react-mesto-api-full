@@ -56,7 +56,7 @@ class Api {
 
   // Метод отправки и удаления лайка на сервере
   changeLikeCardStatus(cardId, isLiked) {
-    return fetch(`${this._address}/cards/likes/${cardId}`, {
+    return fetch(`${this._address}/cards/${cardId}/likes/`, {
       method: isLiked ? 'DELETE' : 'PUT',
       credentials: 'include',
     })
