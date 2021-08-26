@@ -113,7 +113,7 @@ function App() {
   }
 
   function handleCardLike(card) {
-    const isLiked = card.likes.some(like => like._id === currentUser._id);
+    const isLiked = card.likes.some(like => like === currentUser._id);
 
     api.changeLikeCardStatus(card._id, isLiked)
       .then((newCard) => {
@@ -164,7 +164,7 @@ function App() {
   }
 
   function handleSignOut() {
-    // localStorage.removeItem('jwt');
+    localStorage.removeItem('jwt');
     setLoggedIn(false);
     history.push('/signin');
   }
