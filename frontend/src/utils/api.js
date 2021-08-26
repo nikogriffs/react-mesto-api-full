@@ -16,6 +16,7 @@ class Api {
   // Метод получения начальных карточек
   getInitialCards(token) {
     return fetch(`${this._address}/cards`, {
+      credentials: 'include',
       headers: {
         authorization: `Bearer ${token}`,
         'Content-Type': 'application/json'
@@ -27,6 +28,7 @@ class Api {
   // Метод получения информации о пользователе с сервера
   getUserInfo(token) {
     return fetch(`${this._address}/users/me`, {
+      credentials: 'include',
       headers: {
         authorization: `Bearer ${token}`,
         'Content-Type': 'application/json'
@@ -39,6 +41,7 @@ class Api {
   setUserInfo(name, job, token) {
     return fetch(`${this._address}/users/me`, {
       method: 'PATCH',
+      credentials: 'include',
       headers: {
         // authorization: `Bearer ${token}`,
         'Content-Type': 'application/json'
@@ -52,6 +55,7 @@ class Api {
   createCard(name, link, token) {
     return fetch(`${this._address}/cards`, {
       method: 'POST',
+      credentials: 'include',
       headers: {
         authorization: `Bearer ${token}`,
         'Content-Type': 'application/json'
@@ -65,6 +69,7 @@ class Api {
   changeLikeCardStatus(cardId, isLiked, token) {
     return fetch(`${this._address}/cards/likes/${cardId}`, {
       method: isLiked ? 'DELETE' : 'PUT',
+      credentials: 'include',
       headers: {
         authorization: `Bearer ${token}`,
         'Content-Type': 'application/json'
@@ -77,6 +82,7 @@ class Api {
   delCard(cardId, token) {
     return fetch(`${this._address}/cards/${cardId}`, {
       method: 'DELETE',
+      credentials: 'include',
       headers: {
         authorization: `Bearer ${token}`,
         'Content-Type': 'application/json'
@@ -89,6 +95,7 @@ class Api {
   updateAvatar(avatar, token) {
     return fetch(`${this._address}/users/me/avatar`, {
       method: 'PATCH',
+      credentials: 'include',
       headers: {
         authorization: `Bearer ${token}`,
         'Content-Type': 'application/json'
