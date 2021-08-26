@@ -9,7 +9,7 @@ import ImagePopup from './ImagePopup.js';
 import api from '../utils/api.js';
 import { CurrentUserContext } from '../contexts/CurrentUserContext.js';
 import ProtectedRoute from './ProtectedRoute.js';
-import { Route, Switch, useHistory } from 'react-router-dom';
+import { Route, Switch, useHistory, Redirect } from 'react-router-dom';
 import Login from './Login.js';
 import Register from './Register.js';
 import InfoTooltip from './InfoTooltip.js';
@@ -33,14 +33,16 @@ function App() {
   const history = useHistory();
 
   React.useEffect(() => {
-    Promise.all([api.getUserInfo(), api.getInitialCards()])
-      .then(([user, cards]) => {
-        setCurrentUser(user);
-        setCards(cards);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    if (loggedIn) {
+      Promise.all([api.getUserInfo(), api.getInitialCards()])
+        .then(([user, cards]) => {
+          setCurrentUser(user);
+          setCards(cards);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   }, []);
 
   React.useEffect(() => {
@@ -128,7 +130,7 @@ function App() {
     api.delCard(card._id)
       .then(() => {
         setCards((state) => state.filter((c) => c._id !== card._id));
-        
+
       })
       .catch((err) => {
         console.log(err);
@@ -165,7 +167,7 @@ function App() {
   }
 
   function handleSignOut() {
-    // localStorage.removeItem('jwt');
+    localStorage.removeItem('jwt');
     setLoggedIn(false);
     history.push('/signin');
   }
@@ -195,6 +197,11 @@ function App() {
 
         <Route path="/signin">
           <Login onLogin={handleLogin} />
+        </Route>
+
+        <Route>
+          {/* {loggedIn ? <Redirect to="/" /> : <Redirect to="/signin" />} */}
+          {!loggedIn && <Redirect to="/signin" />}
         </Route>
 
       </Switch>
