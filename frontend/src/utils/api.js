@@ -1,7 +1,6 @@
 class Api {
   constructor(options) {
     this._address = options.baseUrl;
-    // this._token = options.headers.authorization;
   }
 
   // Метод проверки ответа от сервера
@@ -17,10 +16,6 @@ class Api {
   getInitialCards() {
     return fetch(`${this._address}/cards`, {
       credentials: 'include',
-      // headers: {
-      //   authorization: `Bearer ${token}`,
-      //   'Content-Type': 'application/json'
-      // }
     })
       .then(this._checkAnswer)
   }
@@ -29,10 +24,6 @@ class Api {
   getUserInfo() {
     return fetch(`${this._address}/users/me`, {
       credentials: 'include',
-      // headers: {
-      //   authorization: `Bearer ${token}`,
-      //   'Content-Type': 'application/json'
-      // }
     })
       .then(this._checkAnswer)
   }
@@ -43,7 +34,6 @@ class Api {
       method: 'PATCH',
       credentials: 'include',
       headers: {
-        // authorization: `Bearer ${token}`,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({ name: name, about: job })
@@ -57,7 +47,6 @@ class Api {
       method: 'POST',
       credentials: 'include',
       headers: {
-        // authorization: `Bearer ${token}`,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({ name: name, link: link })
@@ -70,10 +59,6 @@ class Api {
     return fetch(`${this._address}/cards/likes/${cardId}`, {
       method: isLiked ? 'DELETE' : 'PUT',
       credentials: 'include',
-      // headers: {
-      //   authorization: `Bearer ${token}`,
-      //   'Content-Type': 'application/json'
-      // }
     })
       .then(this._checkAnswer)
   }
@@ -83,10 +68,6 @@ class Api {
     return fetch(`${this._address}/cards/${cardId}`, {
       method: 'DELETE',
       credentials: 'include',
-      // headers: {
-      //   authorization: `Bearer ${token}`,
-      //   'Content-Type': 'application/json'
-      // }
     })
       .then(this._checkAnswer)
   }
@@ -97,7 +78,6 @@ class Api {
       method: 'PATCH',
       credentials: 'include',
       headers: {
-        // authorization: `Bearer ${token}`,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({ avatar: avatar })
@@ -108,9 +88,6 @@ class Api {
 
 const api = new Api({
   baseUrl: 'https://api.mesto.nikogriffs.nomoredomains.work',
-  // headers: {
-  //   authorization: '8e28ef26-30e7-43b7-b459-31efb2dce5c1'
-  // }
 });
 
 export default api;
