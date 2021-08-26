@@ -107,7 +107,7 @@ class Api {
 }
 
 const api = new Api({
-  baseUrl: 'http://api.mesto.nikogriffs.nomoredomains.work',
+  baseUrl: 'https://api.mesto.nikogriffs.nomoredomains.work',
   // headers: {
   //   authorization: '8e28ef26-30e7-43b7-b459-31efb2dce5c1'
   // }
