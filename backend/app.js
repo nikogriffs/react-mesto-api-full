@@ -25,7 +25,7 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const { PORT = 3000 } = process.env;
 const app = express();
-app.use(cors({ origin: ['http://mesto.nikogriffs.nomoredomains.monster', 'http://localhost:3000'] }));
+app.use(cors());
 
 // app.use(function (req, res, next) {
 //   const { origin } = req.headers;
