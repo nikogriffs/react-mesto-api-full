@@ -33,23 +33,23 @@ function App() {
   const history = useHistory();
 
   React.useEffect(() => {
-    if (loggedIn) {
-      Promise.all([api.getUserInfo(), api.getInitialCards()])
-        .then(([user, cards]) => {
-          setCurrentUser(user);
-          setCards(cards);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
+    // if (loggedIn) {
+    Promise.all([api.getUserInfo(), api.getInitialCards()])
+      .then(([user, cards]) => {
+        setCurrentUser(user);
+        setCards(cards);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    // }
   }, []);
 
   React.useEffect(() => {
     auth.checkToken()
       .then((res) => {
         setLoggedIn(true);
-        history.push('/');
+        // history.push('/');
         setEmail(res.email);
       })
       .catch((err) => {
@@ -200,8 +200,8 @@ function App() {
         </Route>
 
         <Route>
-          {/* {loggedIn ? <Redirect to="/" /> : <Redirect to="/signin" />} */}
-          {!loggedIn && <Redirect to="/signin" />}
+          {loggedIn ? <Redirect to="/" /> : <Redirect to="/signin" />}
+          {/* {!loggedIn && <Redirect to="/signin" />} */}
         </Route>
 
       </Switch>
