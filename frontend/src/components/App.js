@@ -44,18 +44,15 @@ function App() {
   }, []);
 
   React.useEffect(() => {
-    // if (localStorage.getItem('jwt')) {
-    //   const jwt = localStorage.getItem('jwt');
-      auth.checkToken()
-        .then((res) => {
-          setLoggedIn(true);
-          history.push('/');
-          setEmail(res.data.email);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    // }
+    auth.checkToken()
+      .then((res) => {
+        setLoggedIn(true);
+        history.push('/');
+        setEmail(res.email);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, [history]);
 
   function handleUpdateUser(data) {
