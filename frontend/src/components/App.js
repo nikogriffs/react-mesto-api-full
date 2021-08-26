@@ -44,9 +44,9 @@ function App() {
   }, []);
 
   React.useEffect(() => {
-    if (localStorage.getItem('jwt')) {
-      const jwt = localStorage.getItem('jwt');
-      auth.checkToken(jwt)
+    // if (localStorage.getItem('jwt')) {
+    //   const jwt = localStorage.getItem('jwt');
+      auth.checkToken()
         .then((res) => {
           setLoggedIn(true);
           history.push('/');
@@ -55,7 +55,7 @@ function App() {
         .catch((err) => {
           console.log(err);
         });
-    }
+    // }
   }, [history]);
 
   function handleUpdateUser(data) {

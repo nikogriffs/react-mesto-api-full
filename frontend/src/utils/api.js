@@ -14,36 +14,36 @@ class Api {
   }
 
   // Метод получения начальных карточек
-  getInitialCards(token) {
+  getInitialCards() {
     return fetch(`${this._address}/cards`, {
       credentials: 'include',
-      headers: {
-        authorization: `Bearer ${token}`,
-        'Content-Type': 'application/json'
-      }
+      // headers: {
+      //   authorization: `Bearer ${token}`,
+      //   'Content-Type': 'application/json'
+      // }
     })
       .then(this._checkAnswer)
   }
 
   // Метод получения информации о пользователе с сервера
-  getUserInfo(token) {
+  getUserInfo() {
     return fetch(`${this._address}/users/me`, {
       credentials: 'include',
-      headers: {
-        authorization: `Bearer ${token}`,
-        'Content-Type': 'application/json'
-      }
+      // headers: {
+      //   authorization: `Bearer ${token}`,
+      //   'Content-Type': 'application/json'
+      // }
     })
       .then(this._checkAnswer)
   }
 
   // Метод отправки инфоормации о пользователе на сервер
-  setUserInfo(name, job, token) {
+  setUserInfo(name, job) {
     return fetch(`${this._address}/users/me`, {
       method: 'PATCH',
       credentials: 'include',
       headers: {
-        authorization: `Bearer ${token}`,
+        // authorization: `Bearer ${token}`,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({ name: name, about: job })
@@ -52,12 +52,12 @@ class Api {
   }
 
   // Метод создания карточки на сервере
-  createCard(name, link, token) {
+  createCard(name, link) {
     return fetch(`${this._address}/cards`, {
       method: 'POST',
       credentials: 'include',
       headers: {
-        authorization: `Bearer ${token}`,
+        // authorization: `Bearer ${token}`,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({ name: name, link: link })
@@ -66,38 +66,38 @@ class Api {
   }
 
   // Метод отправки и удаления лайка на сервере
-  changeLikeCardStatus(cardId, isLiked, token) {
+  changeLikeCardStatus(cardId, isLiked) {
     return fetch(`${this._address}/cards/likes/${cardId}`, {
       method: isLiked ? 'DELETE' : 'PUT',
       credentials: 'include',
-      headers: {
-        authorization: `Bearer ${token}`,
-        'Content-Type': 'application/json'
-      }
+      // headers: {
+      //   authorization: `Bearer ${token}`,
+      //   'Content-Type': 'application/json'
+      // }
     })
       .then(this._checkAnswer)
   }
 
   // Метод удаления карточки с сервера
-  delCard(cardId, token) {
+  delCard(cardId) {
     return fetch(`${this._address}/cards/${cardId}`, {
       method: 'DELETE',
       credentials: 'include',
-      headers: {
-        authorization: `Bearer ${token}`,
-        'Content-Type': 'application/json'
-      }
+      // headers: {
+      //   authorization: `Bearer ${token}`,
+      //   'Content-Type': 'application/json'
+      // }
     })
       .then(this._checkAnswer)
   }
 
   // Метод обновления аватара на сервере
-  updateAvatar(avatar, token) {
+  updateAvatar(avatar) {
     return fetch(`${this._address}/users/me/avatar`, {
       method: 'PATCH',
       credentials: 'include',
       headers: {
-        authorization: `Bearer ${token}`,
+        // authorization: `Bearer ${token}`,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({ avatar: avatar })
