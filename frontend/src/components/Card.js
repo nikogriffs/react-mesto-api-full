@@ -8,7 +8,7 @@ function Card({ card, onCardClick, onCardLike, onCardDelete }) {
     console.log(currentUser._id);
     console.log(card.owner);
 
-    const isOwn = card.owner._id === currentUser._id;
+    const isOwn = card.owner === currentUser._id;
     const cardDeleteButtonClassName = `places__trash-button ${!isOwn && "places__trash-button_hidden"}`;
 
     const isLiked = card.likes.some(like => like === currentUser._id);
