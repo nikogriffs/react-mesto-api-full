@@ -10,7 +10,7 @@ function Header(props) {
                 {props.loggedIn ?
                     <>
                         <p className="header__email">{props.email}</p>
-                        <NavLink to="/signin" className="header__link header__link_logged" onClick={props.logout} >Выйти</NavLink>
+                        <NavLink to="/signin" className="header__link header__link_logged" onClick={props.onSignOut} >Выйти</NavLink>
                     </>
                     :
                     <>
