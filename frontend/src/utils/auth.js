@@ -47,13 +47,13 @@ export const logout = () => {
     method: 'GET',
     credentials: 'include',
   })
-    .then(function (response) {
-      if (response.redirected) {
-        return window.location.replace(response.url);
-      }
+    // .then(function (response) {
+    //   if (response.redirected) {
+    //     return window.location.replace(response.url);
+    //   }
 
-    }).catch(function (err) {
-      console.log(err);
-    });
-  // .then(checkAnswer)
+    // }).catch(function (err) {
+    //   console.log(err);
+    // });
+  .then(checkAnswer)
 }
