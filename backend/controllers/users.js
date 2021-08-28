@@ -24,12 +24,8 @@ module.exports.getUser = (req, res, next) => {
 };
 
 module.exports.logoutUser = (req, res, next) => {
-  User.findOne({ _id: req.user._id })
-    .then((data) => {
-      console.log(data);
-      res.clearCookie('jwt').send({ message: 'Пользователь вышел из профиля' });
-    })
-    .catch(next);
+  res.clearCookie('jwt').send({ message: 'Пользователь вышел из профиля' });
+  next();
 };
 
 module.exports.getUserId = (req, res, next) => {
