@@ -35,7 +35,7 @@ function Register(props) {
                         onChange={handleChangeEmail}
                         value={email}
                         placeholder="Email"
-                        autoComplete="off" />
+                    />
 
                     <input
                         className="authorization__input"
@@ -45,7 +45,7 @@ function Register(props) {
                         onChange={handleChangePassword}
                         value={password}
                         placeholder="Пароль"
-                        autoComplete="off" />
+                    />
 
                     <button type="submit" className="authorization__button">Зарегистрироваться</button>
                 </fieldset>

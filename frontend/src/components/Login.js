@@ -34,7 +34,7 @@ function Login(props) {
                         onChange={handleChangeEmail}
                         value={email}
                         placeholder="Email"
-                        autoComplete="off" />
+                    />
 
                     <input
                         className="authorization__input"
@@ -44,7 +44,7 @@ function Login(props) {
                         onChange={handleChangePassword}
                         value={password}
                         placeholder="Пароль"
-                        autoComplete="off" />
+                    />
 
                     <button type="submit" className="authorization__button">Войти</button>
                 </fieldset>
