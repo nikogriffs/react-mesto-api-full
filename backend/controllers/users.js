@@ -108,8 +108,6 @@ module.exports.login = (req, res, next) => {
     .catch(next);
 };
 
-module.exports.logoutUser = (req, res, next) => {
-  User.findOne({ _id: req.user._id })
-    .then(() => res.clearCookie('jwt').send({}))
-    .catch(next);
+module.exports.logout = (req, res) => {
+  res.clearCookie('jwt').send({ message: 'Пользователь вышел из профиля' });
 };
