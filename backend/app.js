@@ -7,7 +7,7 @@ const cookieParser = require('cookie-parser');
 const { celebrate, Joi, isCelebrateError } = require('celebrate');
 const cors = require('cors');
 const auth = require('./middlewares/auth');
-const { login, createUser } = require('./controllers/users');
+const { login, createUser, logout } = require('./controllers/users');
 const NotFoundError = require('./errors/not-found-err');
 const BadRequestError = require('./errors/bad-request-err');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
@@ -57,10 +57,12 @@ app.post('/signup', celebrate({
   }),
 }), createUser);
 
-app.get('/logout', (req, res) => {
-  res.clearCookie('jwt');
-  return res.status(200).redirect('/signin');
-});
+// app.get('/logout', (req, res) => {
+//   res.clearCookie('jwt');
+//   return res.status(200).redirect('/');
+// });
+
+app.get('/logout', logout);
 
 // app.delete('/logout', logout);
 
