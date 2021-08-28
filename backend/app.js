@@ -59,7 +59,7 @@ app.post('/signup', celebrate({
 
 app.get('/logout', (req, res) => {
   res.clearCookie('jwt');
-  return res.status(200).redirect('/signin');
+  return res.status(200).send({ message: 'Пользователь вышел из профиля' });
 });
 
 // app.delete('/logout', logout);
