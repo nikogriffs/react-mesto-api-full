@@ -23,9 +23,9 @@ module.exports.getUser = (req, res, next) => {
     .catch(next);
 };
 
-module.exports.logoutUser = (req, res) => {
-  res.clearCookie('jwt').send({ message: 'Пользователь вышел из профиля' });
-  // res.redirect('/');
+module.exports.logoutUser = (req, res, next) => {
+  res.clearCookie('jwt');
+  next();
 };
 
 module.exports.getUserId = (req, res, next) => {
