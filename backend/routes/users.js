@@ -30,4 +30,8 @@ router.patch('/me/avatar', celebrate({
   }),
 }), updateAvatar);
 
+// router.get('/logout', (req, res) => {
+//   res.clearCookie('jwt').send();
+// });
+
 module.exports = router;

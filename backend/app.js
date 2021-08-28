@@ -7,7 +7,7 @@ const cookieParser = require('cookie-parser');
 const { celebrate, Joi, isCelebrateError } = require('celebrate');
 const cors = require('cors');
 const auth = require('./middlewares/auth');
-const { login, createUser, logout } = require('./controllers/users');
+const { login, createUser } = require('./controllers/users');
 const NotFoundError = require('./errors/not-found-err');
 const BadRequestError = require('./errors/bad-request-err');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
@@ -37,6 +37,8 @@ app.get('/crash-test', () => {
   }, 0);
 });
 
+app.get('/logout', auth, (req, res) => res.clearCookie('jwt').status(200).json({ message: 'Successfully logged out 😏 🍀' }));
+
 app.post('/signin', celebrate({
   body: Joi.object().keys({
     email: Joi.string().required().email(),
@@ -54,7 +56,7 @@ app.post('/signup', celebrate({
   }),
 }), createUser);
 
-app.delete('/logout', logout);
+// app.delete('/logout', logout);
 
 app.use('/users', auth, require('./routes/users'));
 app.use('/cards', auth, require('./routes/cards'));
