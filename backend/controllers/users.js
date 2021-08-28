@@ -23,10 +23,6 @@ module.exports.getUser = (req, res, next) => {
     .catch(next);
 };
 
-module.exports.logoutUser = (req, res) => {
-  res.clearCookie('jwt').status(200).send({ message: 'Пользователь вышел из профиля' });
-};
-
 module.exports.getUserId = (req, res, next) => {
   User.findById(req.params.userId)
     .orFail(new Error('NotFound'))
@@ -110,4 +106,8 @@ module.exports.login = (req, res, next) => {
       throw new UnauthorizedError('Передан неверный логин или пароль');
     })
     .catch(next);
+};
+
+module.exports.logoutUser = (req, res) => {
+  res.clearCookie('jwt').status(200).send({ message: 'Пользователь вышел из профиля' });
 };
