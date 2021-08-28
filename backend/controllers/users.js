@@ -23,7 +23,7 @@ module.exports.getUser = (req, res, next) => {
     .catch(next);
 };
 
-module.exports.logout = (req, res) => {
+module.exports.logoutUser = (req, res) => {
   res.clearCookie('jwt').status(200).send({ message: 'Пользователь вышел из профиля' });
 };
 
