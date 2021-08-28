@@ -2,12 +2,22 @@ const router = require('express').Router();
 const { celebrate, Joi } = require('celebrate');
 
 const {
-  getUsers, getUser, getUserId, updateProfile, updateAvatar,
+  getUsers, getUser, getUserId, updateProfile, updateAvatar, logoutUser,
 } = require('../controllers/users');
 
 router.get('/', getUsers);
 
 router.get('/me', getUser);
+
+router.get('/logout', logoutUser);
+
+// router.get('/logout', (req, res) => {
+//   res.clearCookie('jwt');
+//   res.status(200).send({
+//     message: 'Вы вышли',
+//   });
+//   res.redirect('/');
+// });
 
 router.get('/:userId', celebrate({
   params: Joi.object().keys({

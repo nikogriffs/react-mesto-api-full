@@ -24,7 +24,7 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 // const requestHeaders = req.headers['access-control-request-headers'];
 
-const { PORT = 3000 } = process.env;
+const { PORT = 3001 } = process.env;
 const app = express();
 app.use(cors({ credentials: true, origin: true }));
 app.options('*', cors());
@@ -57,6 +57,12 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
 });
 
 app.use(requestLogger);
+
+app.get('/crash-test', () => {
+  setTimeout(() => {
+    throw new Error('Сервер сейчас упадёт');
+  }, 0);
+});
 
 app.post('/signin', celebrate({
   body: Joi.object().keys({

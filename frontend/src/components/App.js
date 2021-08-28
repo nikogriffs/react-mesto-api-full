@@ -9,7 +9,7 @@ import ImagePopup from './ImagePopup.js';
 import api from '../utils/api.js';
 import { CurrentUserContext } from '../contexts/CurrentUserContext.js';
 import ProtectedRoute from './ProtectedRoute.js';
-import { Route, Switch, useHistory, Redirect } from 'react-router-dom';
+import { Route, Switch, useHistory } from 'react-router-dom';
 import Login from './Login.js';
 import Register from './Register.js';
 import InfoTooltip from './InfoTooltip.js';
@@ -33,30 +33,28 @@ function App() {
   const history = useHistory();
 
   React.useEffect(() => {
-    // if (loggedIn) {
-    Promise.all([api.getUserInfo(), api.getInitialCards()])
-      .then(([user, cards]) => {
-        setCurrentUser(user);
-        setCards(cards);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-    // }
-  }, []);
-
-  React.useEffect(() => {
     if (loggedIn) {
-      auth.checkToken()
-        .then((res) => {
-          setLoggedIn(true);
-          // history.push('/');
-          setEmail(res.email);
+      Promise.all([api.getUserInfo(), api.getInitialCards()])
+        .then(([user, cards]) => {
+          setCurrentUser(user);
+          setCards(cards);
         })
         .catch((err) => {
           console.log(err);
         });
     }
+  }, [loggedIn]);
+
+  React.useEffect(() => {
+    auth.checkToken()
+      .then((res) => {
+        setLoggedIn(true);
+        history.push('/');
+        setEmail(res.email);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, [history]);
 
   function handleUpdateUser(data) {
@@ -155,8 +153,7 @@ function App() {
 
   function handleLogin(email, password) {
     auth.authorize(email, password)
-      .then((res) => {
-        // localStorage.setItem('jwt', res.token);
+      .then(() => {
         setLoggedIn(true);
         history.push('/');
         setEmail(email);
@@ -169,9 +166,11 @@ function App() {
   }
 
   function handleSignOut() {
-    localStorage.removeItem('jwt');
-    setLoggedIn(false);
-    history.push('/signin');
+    auth.logout()
+      .then(() => {
+        setLoggedIn(false);
+        history.push('/signin');
+      })
   }
 
   return (
@@ -200,11 +199,6 @@ function App() {
         <Route path="/signin">
           <Login onLogin={handleLogin} />
         </Route>
-
-        {/* <Route> */} 
-          {/* {loggedIn ? <Redirect to="/" /> : <Redirect to="/signin" />} */}
-          {/* {!loggedIn && <Redirect to="/signin" />} */}
-        {/* </Route> */}
 
       </Switch>
 

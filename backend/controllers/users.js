@@ -23,6 +23,10 @@ module.exports.getUser = (req, res, next) => {
     .catch(next);
 };
 
+module.exports.logoutUser = (req, res) => {
+  res.clearCookie('jwt').send({ message: 'Пользователь вышел из профиля' });
+};
+
 module.exports.getUserId = (req, res, next) => {
   User.findById(req.params.userId)
     .orFail(new Error('NotFound'))
