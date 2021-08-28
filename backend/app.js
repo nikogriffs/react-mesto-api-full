@@ -37,7 +37,8 @@ app.get('/crash-test', () => {
   }, 0);
 });
 
-app.get('/logout', auth, (req, res) => res.clearCookie('jwt').status(200).json({ message: 'Successfully logged out 😏 🍀' }));
+// eslint-disable-next-line max-len
+// app.get('/logout', auth, (req, res) => res.clearCookie('jwt').status(200).json({ message: 'Successfully logged out 😏 🍀' }));
 
 app.post('/signin', celebrate({
   body: Joi.object().keys({
@@ -55,6 +56,11 @@ app.post('/signup', celebrate({
     password: Joi.string().required().min(8),
   }),
 }), createUser);
+
+app.get('/logout', (req, res) => {
+  res.clearCookie('jwt');
+  return res.status(200).redirect('/signin');
+});
 
 // app.delete('/logout', logout);
 

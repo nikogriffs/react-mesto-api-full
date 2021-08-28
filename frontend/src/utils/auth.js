@@ -44,8 +44,16 @@ export const checkToken = () => {
 
 export const logout = () => {
   return fetch(`${BASE_URL}/logout`, {
-    method: 'DELETE',
+    method: 'GET',
     credentials: 'include',
   })
-    .then(checkAnswer)
+    .then(function (response) {
+      if (response.redirected) {
+        return window.location.replace(response.url);
+      }
+
+    }).catch(function (err) {
+      console.log(err);
+    });
+  // .then(checkAnswer)
 }
