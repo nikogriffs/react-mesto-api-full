@@ -87,7 +87,7 @@ class Api {
 }
 
 const api = new Api({
-  baseUrl: 'https://localhost:3001',
+  baseUrl: 'https://api.mesto.nikogriffs.nomoredomains.work',
 });
 
 export default api;

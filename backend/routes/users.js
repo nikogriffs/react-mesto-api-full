@@ -11,14 +11,6 @@ router.get('/me', getUser);
 
 router.get('/logout', logoutUser);
 
-// router.get('/logout', (req, res) => {
-//   res.clearCookie('jwt');
-//   res.status(200).send({
-//     message: 'Вы вышли',
-//   });
-//   res.redirect('/');
-// });
-
 router.get('/:userId', celebrate({
   params: Joi.object().keys({
     userId: Joi.string().alphanum().length(24),
