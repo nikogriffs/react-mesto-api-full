@@ -9,8 +9,6 @@ router.get('/', getUsers);
 
 router.get('/me', getUser);
 
-// router.delete('/logout', logoutUser);
-
 router.get('/:userId', celebrate({
   params: Joi.object().keys({
     userId: Joi.string().alphanum().length(24),
@@ -29,9 +27,5 @@ router.patch('/me/avatar', celebrate({
     avatar: Joi.string().required(),
   }),
 }), updateAvatar);
-
-// router.get('/logout', (req, res) => {
-//   res.clearCookie('jwt').send();
-// });
 
 module.exports = router;

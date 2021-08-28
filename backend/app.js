@@ -15,8 +15,17 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 const { PORT = 3000 } = process.env;
 const app = express();
 
-app.use(cors({ credentials: true, origin: true }));
-// app.options('*', cors());
+app.use(cors({
+  credentials: true,
+  origin: [
+    'https://mesto.nikogriffs.nomoredomains.monster',
+    'https://api.mesto.nikogriffs.nomoredomains.work',
+    'http://mesto.nikogriffs.nomoredomains.monster',
+    'http://api.mesto.nikogriffs.nomoredomains.work',
+    'https://localhost:3000',
+    'http://localhost:3000',
+  ],
+}));
 app.use(helmet());
 app.use(cookieParser());
 app.use(express.json());
@@ -37,9 +46,6 @@ app.get('/crash-test', () => {
   }, 0);
 });
 
-// eslint-disable-next-line max-len
-// app.get('/logout', auth, (req, res) => res.clearCookie('jwt').status(200).json({ message: 'Successfully logged out 😏 🍀' }));
-
 app.post('/signin', celebrate({
   body: Joi.object().keys({
     email: Joi.string().required().email(),
@@ -57,14 +63,7 @@ app.post('/signup', celebrate({
   }),
 }), createUser);
 
-// app.get('/logout', (req, res) => {
-//   res.clearCookie('jwt');
-//   return res.status(200).redirect('/');
-// });
-
 app.get('/logout', logout);
-
-// app.delete('/logout', logout);
 
 app.use('/users', auth, require('./routes/users'));
 app.use('/cards', auth, require('./routes/cards'));
