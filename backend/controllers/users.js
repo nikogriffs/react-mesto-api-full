@@ -109,7 +109,7 @@ module.exports.login = (req, res, next) => {
 };
 
 module.exports.logout = (req, res) => {
-  res.clearCookie('jwt').send({ message: 'Пользователь вышел из профиля' });
+  res.clearCookie('jwt', { sameSite: 'none' }).send({ message: 'Пользователь вышел из профиля' });
 };
 
 // app.get('/logout', (req, res) => {
