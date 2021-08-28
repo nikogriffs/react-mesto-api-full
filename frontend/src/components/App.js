@@ -165,7 +165,7 @@ function App() {
       });
   }
 
-  function logout() {
+  function handleSignOut() {
     auth.logout()
       .then(() => {
         setLoggedIn(false);
@@ -175,7 +175,7 @@ function App() {
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
-      <Header loggedIn={loggedIn} logout={logout} email={email} />
+      <Header loggedIn={loggedIn} onSignOut={handleSignOut} email={email} />
 
       <Switch>
 

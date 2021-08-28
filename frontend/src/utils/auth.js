@@ -44,7 +44,7 @@ export const checkToken = () => {
 
 export const logout = () => {
   return fetch(`${BASE_URL}/logout`, {
-    method: 'DELETE',
+    method: 'GET',
     credentials: 'include',
   })
     .then(checkAnswer)
