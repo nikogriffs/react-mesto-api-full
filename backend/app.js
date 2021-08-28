@@ -53,10 +53,10 @@ app.post('/signup', celebrate({
   }),
 }), createUser);
 
+app.delete('/logout', logout);
+
 app.use('/users', auth, require('./routes/users'));
 app.use('/cards', auth, require('./routes/cards'));
-
-app.delete('/logout', logout);
 
 app.use(errorLogger);
 
