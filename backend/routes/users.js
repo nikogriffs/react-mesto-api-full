@@ -9,7 +9,7 @@ router.get('/', getUsers);
 
 router.get('/me', getUser);
 
-router.get('/logout', logoutUser);
+router.delete('/logout', logoutUser);
 
 router.get('/:userId', celebrate({
   params: Joi.object().keys({
