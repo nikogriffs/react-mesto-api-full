@@ -16,7 +16,7 @@
 
 [Backend](https://api.mesto.nikogriffs.nomoredomains.work)
 
-Публичный IP: 178.154.254.32
+Публичный IP: 178.154.221.233
 
 ## **Frontend**
 
