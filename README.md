@@ -10,9 +10,9 @@
 
 Готовое веб-приложение. Для просмотра перейдите по ссылкам ниже.
 
-[Frontend](mesto.nikogriffs.nomoredomains.monster)
+[Frontend](https://mesto.nikogriffs.nomoredomains.monster)
 
-[Backend](api.mesto.nikogriffs.nomoredomains.work)
+[Backend](https://api.mesto.nikogriffs.nomoredomains.work)
 
 Публичный IP: 84.201.174.31
 
