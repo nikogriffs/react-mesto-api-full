@@ -8,9 +8,6 @@ const BadRequestError = require('../errors/bad-request-err');
 const NotFoundError = require('../errors/not-found-err');
 const ConflictError = require('../errors/conflict-err');
 
-// Закомментил некоторые участки кода,
-// так как теперь за отлов ошибок в этих местах отвечает joi celebrate
-
 module.exports.getUsers = (req, res, next) => {
   User.find({})
     .then((users) => res.send(users))
@@ -33,7 +30,6 @@ module.exports.getUserId = (req, res, next) => {
       if (err.message === 'NotFound') {
         throw new NotFoundError('Пользователь с указанным ID не найден');
       }
-      // throw new BadRequestError('Переданы некорректные данные при поиске пользователя');
     })
     .catch(next);
 };
@@ -61,16 +57,9 @@ module.exports.updateProfile = (req, res, next) => {
   const { name, about } = req.body;
 
   User.findByIdAndUpdate(req.user._id, { name, about }, { new: true, runValidators: true })
-    // .orFail(new Error('NotFound'))
     .then((user) => {
       res.send(user);
     })
-    // .catch((err) => {
-    //   if (err.message === 'NotFound') {
-    //     throw new NotFoundError('Пользователь с указанным ID не найден');
-    //   }
-    //   throw new BadRequestError('Переданы некорректные данные при обновлении профиля');
-    // })
     .catch(next);
 };
 
@@ -78,14 +67,10 @@ module.exports.updateAvatar = (req, res, next) => {
   const { avatar } = req.body;
 
   User.findByIdAndUpdate(req.user._id, { avatar }, { new: true, runValidators: true })
-    // .orFail(new Error('NotFound'))
     .then((user) => {
       res.send(user);
     })
     .catch(() => {
-      // if (err.message === 'NotFound') {
-      //   throw new NotFoundError('Пользователь с указанным ID не найден');
-      // }
       throw new BadRequestError('Переданы некорректные данные при обновлении аватара');
     })
     .catch(next);

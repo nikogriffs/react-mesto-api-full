@@ -2,7 +2,7 @@
   display: flex;
   visibility: hidden;
   opacity: 0;
-  transition: visibility .3s, opacity .3s ease;
+  transition: visibility 0.3s, opacity 0.3s ease;
   width: 100vw;
   height: 100vh;
   position: fixed;
@@ -10,5 +10,5 @@
   align-items: center;
   top: 0;
   left: 0;
-  background-color: rgba(0, 0, 0, .5);
+  background-color: rgba(0, 0, 0, 0.5);
 }

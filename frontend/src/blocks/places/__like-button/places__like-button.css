@@ -8,9 +8,9 @@
   height: 19px;
   outline: none;
   cursor: pointer;
-  transition: opacity .3s ease;
+  transition: opacity 0.3s ease;
 }
 
 .places__like-button:hover {
-  opacity: .5;
+  opacity: 0.5;
 }

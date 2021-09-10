@@ -10,9 +10,9 @@
   cursor: pointer;
   border: none;
   padding: 0;
-  transition: opacity .3s ease;
+  transition: opacity 0.3s ease;
 }
 
 .places__trash-button:hover {
-  opacity: .6;
+  opacity: 0.6;
 }

@@ -1,9 +1,9 @@
 .authorization__link {
-    text-decoration: none;
-    color: white;
-    transition: opacity 0.3s ease;
+  text-decoration: none;
+  color: white;
+  transition: opacity 0.3s ease;
 }
 
 .authorization__link:hover {
-    opacity: .6;
+  opacity: 0.6;
 }

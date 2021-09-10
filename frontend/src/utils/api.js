@@ -3,16 +3,13 @@ class Api {
     this._address = options.baseUrl;
   }
 
-  // Метод проверки ответа от сервера
   _checkAnswer(res) {
     if (res.ok) {
       return res.json();
     }
-    // если ошибка, отклоняем промис
     return Promise.reject(`Ошибка: ${res.status}`);
   }
 
-  // Метод получения начальных карточек
   getInitialCards() {
     return fetch(`${this._address}/cards`, {
       credentials: 'include',
@@ -20,7 +17,6 @@ class Api {
       .then(this._checkAnswer)
   }
 
-  // Метод получения информации о пользователе с сервера
   getUserInfo() {
     return fetch(`${this._address}/users/me`, {
       credentials: 'include',
@@ -28,7 +24,6 @@ class Api {
       .then(this._checkAnswer)
   }
 
-  // Метод отправки инфоормации о пользователе на сервер
   setUserInfo(name, job) {
     return fetch(`${this._address}/users/me`, {
       method: 'PATCH',
@@ -41,7 +36,6 @@ class Api {
       .then(this._checkAnswer)
   }
 
-  // Метод создания карточки на сервере
   createCard(name, link) {
     return fetch(`${this._address}/cards`, {
       method: 'POST',
@@ -54,7 +48,6 @@ class Api {
       .then(this._checkAnswer)
   }
 
-  // Метод отправки и удаления лайка на сервере
   changeLikeCardStatus(cardId, isLiked) {
     return fetch(`${this._address}/cards/${cardId}/likes/`, {
       method: isLiked ? 'DELETE' : 'PUT',
@@ -63,7 +56,6 @@ class Api {
       .then(this._checkAnswer)
   }
 
-  // Метод удаления карточки с сервера
   delCard(cardId) {
     return fetch(`${this._address}/cards/${cardId}`, {
       method: 'DELETE',
@@ -72,7 +64,6 @@ class Api {
       .then(this._checkAnswer)
   }
 
-  // Метод обновления аватара на сервере
   updateAvatar(avatar) {
     return fetch(`${this._address}/users/me/avatar`, {
       method: 'PATCH',

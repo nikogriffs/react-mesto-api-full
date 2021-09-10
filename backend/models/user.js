@@ -31,7 +31,6 @@ const userSchema = new mongoose.Schema({
     type: String,
     unique: true,
     required: true,
-    // Требуется по ТЗ, но в данный момент валидация email происходит через joi celebrate
     validate: {
       validator(v) {
         return validator.isEmail(v);
