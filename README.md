@@ -41,4 +41,4 @@ npm run dev
 
 ## **Планы по доработке:**
 
-Подключить eslint-plugin-prettier для форматирования кода с учётом ESLint.
+Использовать Redux и Typescript в проекте. Перенести проект на новый сервер. Подключить eslint-plugin-prettier для форматирования кода с учётом ESLint.
