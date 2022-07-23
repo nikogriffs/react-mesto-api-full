@@ -1,4 +1,4 @@
-export const BASE_URL = 'https://react-mesto.herokuapp.com';
+// export const BASE_URL = 'https://react-mesto.herokuapp.com';
 
 const checkAnswer = (res) => {
   if (res.ok) {
@@ -8,7 +8,7 @@ const checkAnswer = (res) => {
 };
 
 export const register = (email, password) => {
-  return fetch(`${BASE_URL}/signup`, {
+  return fetch(`/signup`, {
     method: 'POST',
     credentials: 'include',
     headers: {
@@ -20,7 +20,7 @@ export const register = (email, password) => {
 };
 
 export const authorize = (email, password) => {
-  return fetch(`${BASE_URL}/signin`, {
+  return fetch(`/signin`, {
     method: 'POST',
     credentials: 'include',
     headers: {
@@ -32,14 +32,14 @@ export const authorize = (email, password) => {
 };
 
 export const checkToken = () => {
-  return fetch(`${BASE_URL}/users/me`, {
+  return fetch(`/users/me`, {
     method: 'GET',
     credentials: 'include',
   }).then(checkAnswer);
 };
 
 export const logout = () => {
-  return fetch(`${BASE_URL}/logout`, {
+  return fetch(`/logout`, {
     method: 'GET',
     credentials: 'include',
   }).then(checkAnswer);
