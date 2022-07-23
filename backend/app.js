@@ -38,6 +38,22 @@ app.use(
     ],
   })
 );
+
+app.use(
+  helmet({
+    contentSecurityPolicy: {
+      directives: {
+        ...helmet.contentSecurityPolicy.getDefaultDirectives(),
+        'script-src': [
+          "'self'",
+          "'unsafe-inline'",
+          'https://react-mesto.herokuapp.com/',
+        ],
+      },
+    },
+  })
+);
+
 app.use(helmet());
 app.use(cookieParser());
 app.use(express.json());
