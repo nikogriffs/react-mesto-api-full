@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from './Header.js';
 import Main from './Main.js';
 import Footer from './Footer.js';
@@ -16,23 +16,22 @@ import InfoTooltip from './InfoTooltip.js';
 import * as auth from '../utils/auth';
 
 function App() {
+  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
+  const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
+  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
+  const [isInfoTooltipPopupOpen, setIsInfoTooltipPopupOpen] = useState(false);
 
-  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
-  const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
-  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
-  const [isInfoTooltipPopupOpen, setIsInfoTooltipPopupOpen] = React.useState(false);
+  const [selectedCard, setSelectedCard] = useState(null);
+  const [currentUser, setCurrentUser] = useState({});
+  const [cards, setCards] = useState([]);
 
-  const [selectedCard, setSelectedCard] = React.useState(null);
-  const [currentUser, setCurrentUser] = React.useState({});
-  const [cards, setCards] = React.useState([]);
-
-  const [loggedIn, setLoggedIn] = React.useState(false);
-  const [isSuccess, setIsSuccess] = React.useState(false);
-  const [email, setEmail] = React.useState('');
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [email, setEmail] = useState('');
 
   const history = useHistory();
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (loggedIn) {
       Promise.all([api.getUserInfo(), api.getInitialCards()])
         .then(([user, cards]) => {
@@ -45,8 +44,9 @@ function App() {
     }
   }, [loggedIn]);
 
-  React.useEffect(() => {
-    auth.checkToken()
+  useEffect(() => {
+    auth
+      .checkToken()
       .then((res) => {
         setLoggedIn(true);
         history.push('/');
@@ -58,7 +58,8 @@ function App() {
   }, [history]);
 
   function handleUpdateUser(data) {
-    api.setUserInfo(data.name, data.about)
+    api
+      .setUserInfo(data.name, data.about)
       .then((user) => {
         setCurrentUser(user);
         closeAllPopups();
@@ -69,7 +70,8 @@ function App() {
   }
 
   function handleUpdateAvatar(data) {
-    api.updateAvatar(data.avatar)
+    api
+      .updateAvatar(data.avatar)
       .then((user) => {
         setCurrentUser(user);
         closeAllPopups();
@@ -80,7 +82,8 @@ function App() {
   }
 
   function handleAddPlaceSubmit(data) {
-    api.createCard(data.name, data.link)
+    api
+      .createCard(data.name, data.link)
       .then((newCard) => {
         setCards([newCard, ...cards]);
         closeAllPopups();
@@ -115,11 +118,14 @@ function App() {
   }
 
   function handleCardLike(card) {
-    const isLiked = card.likes.some(like => like === currentUser._id);
+    const isLiked = card.likes.some((like) => like === currentUser._id);
 
-    api.changeLikeCardStatus(card._id, isLiked)
+    api
+      .changeLikeCardStatus(card._id, isLiked)
       .then((newCard) => {
-        setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
+        setCards((state) =>
+          state.map((c) => (c._id === card._id ? newCard : c))
+        );
       })
       .catch((err) => {
         console.log(err);
@@ -127,10 +133,10 @@ function App() {
   }
 
   function handleCardDelete(card) {
-    api.delCard(card._id)
+    api
+      .delCard(card._id)
       .then(() => {
         setCards((state) => state.filter((c) => c._id !== card._id));
-
       })
       .catch((err) => {
         console.log(err);
@@ -138,7 +144,8 @@ function App() {
   }
 
   function handleRegister(email, password) {
-    auth.register(email, password)
+    auth
+      .register(email, password)
       .then(() => {
         history.push('/signin');
         setIsInfoTooltipPopupOpen(true);
@@ -152,7 +159,8 @@ function App() {
   }
 
   function handleLogin(email, password) {
-    auth.authorize(email, password)
+    auth
+      .authorize(email, password)
       .then(() => {
         setLoggedIn(true);
         history.push('/');
@@ -166,11 +174,10 @@ function App() {
   }
 
   function handleSignOut() {
-    auth.logout()
-      .then(() => {
-        setLoggedIn(false);
-        history.push('/signin');
-      })
+    auth.logout().then(() => {
+      setLoggedIn(false);
+      history.push('/signin');
+    });
   }
 
   return (
@@ -178,9 +185,9 @@ function App() {
       <Header loggedIn={loggedIn} onSignOut={handleSignOut} email={email} />
 
       <Switch>
-
         <ProtectedRoute
-          exact path="/"
+          exact
+          path="/"
           loggedIn={loggedIn}
           component={Main}
           onEditProfile={handleEditProfileClick}
@@ -192,23 +199,37 @@ function App() {
           onCardDelete={handleCardDelete}
         />
 
-        <Route path="/signup" >
+        <Route path="/signup">
           <Register onRegister={handleRegister} />
         </Route>
 
         <Route path="/signin">
           <Login onLogin={handleLogin} />
         </Route>
-
       </Switch>
 
       {loggedIn && <Footer />}
-      <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser} />
-      <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} onAddPlace={handleAddPlaceSubmit} />
-      <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} onUpdateAvatar={handleUpdateAvatar} />
+      <EditProfilePopup
+        isOpen={isEditProfilePopupOpen}
+        onClose={closeAllPopups}
+        onUpdateUser={handleUpdateUser}
+      />
+      <AddPlacePopup
+        isOpen={isAddPlacePopupOpen}
+        onClose={closeAllPopups}
+        onAddPlace={handleAddPlaceSubmit}
+      />
+      <EditAvatarPopup
+        isOpen={isEditAvatarPopupOpen}
+        onClose={closeAllPopups}
+        onUpdateAvatar={handleUpdateAvatar}
+      />
       <ImagePopup card={selectedCard} onClose={closeAllPopups} />
-      <InfoTooltip isOpen={isInfoTooltipPopupOpen} onClose={closeAllPopups} isSuccess={isSuccess} />
-
+      <InfoTooltip
+        isOpen={isInfoTooltipPopupOpen}
+        onClose={closeAllPopups}
+        isSuccess={isSuccess}
+      />
     </CurrentUserContext.Provider>
   );
 }

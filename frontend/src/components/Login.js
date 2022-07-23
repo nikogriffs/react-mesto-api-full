@@ -1,7 +1,6 @@
 import React from 'react';
 
 function Login(props) {
-
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
 
@@ -21,9 +20,7 @@ function Login(props) {
 
   return (
     <div className="authorization">
-      <h2 className="authorization__title">
-        Вход
-      </h2>
+      <h2 className="authorization__title">Вход</h2>
       <form onSubmit={handleSubmit}>
         <fieldset className="authorization__fieldset">
           <input
@@ -46,7 +43,9 @@ function Login(props) {
             placeholder="Пароль"
           />
 
-          <button type="submit" className="authorization__button">Войти</button>
+          <button type="submit" className="authorization__button">
+            Войти
+          </button>
         </fieldset>
       </form>
     </div>

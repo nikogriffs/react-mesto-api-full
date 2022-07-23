@@ -16,7 +16,9 @@ module.exports.createCard = (req, res, next) => {
   Card.create({ name, link, owner: req.user._id })
     .then((card) => res.send(card))
     .catch(() => {
-      throw new BadRequestError('Переданы некорректные данные при создании карточки');
+      throw new BadRequestError(
+        'Переданы некорректные данные при создании карточки'
+      );
     })
     .catch(next);
 };
@@ -26,10 +28,9 @@ module.exports.deleteCard = (req, res, next) => {
     .orFail(new Error('NotFound'))
     .then((card) => {
       if (JSON.stringify(req.user._id) === JSON.stringify(card.owner)) {
-        Card.findByIdAndDelete(req.params.cardId)
-          .then((result) => {
-            res.send(result);
-          });
+        Card.findByIdAndDelete(req.params.cardId).then((result) => {
+          res.send(result);
+        });
       } else {
         throw new ForbiddenError('Попытка удалить чужую карточку');
       }
@@ -47,7 +48,7 @@ module.exports.likeCard = (req, res, next) => {
   Card.findByIdAndUpdate(
     req.params.cardId,
     { $addToSet: { likes: req.user._id } },
-    { new: true },
+    { new: true }
   )
     .orFail(new Error('NotFound'))
     .then((card) => {
@@ -65,7 +66,7 @@ module.exports.unlikeCard = (req, res, next) => {
   Card.findByIdAndUpdate(
     req.params.cardId,
     { $pull: { likes: req.user._id } },
-    { new: true },
+    { new: true }
   )
     .orFail(new Error('NotFound'))
     .then((card) => {

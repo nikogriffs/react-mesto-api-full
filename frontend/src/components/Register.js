@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 function Register(props) {
-
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
 
@@ -22,9 +21,7 @@ function Register(props) {
 
   return (
     <div className="authorization">
-      <h2 className="authorization__title">
-        Регистрация
-      </h2>
+      <h2 className="authorization__title">Регистрация</h2>
       <form onSubmit={handleSubmit}>
         <fieldset className="authorization__fieldset">
           <input
@@ -47,12 +44,17 @@ function Register(props) {
             placeholder="Пароль"
           />
 
-          <button type="submit" className="authorization__button">Зарегистрироваться</button>
+          <button type="submit" className="authorization__button">
+            Зарегистрироваться
+          </button>
         </fieldset>
       </form>
 
       <div className="authorization__menu-link">
-        <span>Уже зарегистрированы? </span><Link to="/signin" className="authorization__link">Войти</Link>
+        <span>Уже зарегистрированы? </span>
+        <Link to="/signin" className="authorization__link">
+          Войти
+        </Link>
       </div>
     </div>
   );
