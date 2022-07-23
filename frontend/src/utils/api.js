@@ -1,8 +1,4 @@
 class Api {
-  // constructor(options) {
-  //   this._address = options.baseUrl;
-  // }
-
   _checkAnswer(res) {
     if (res.ok) {
       return res.json();

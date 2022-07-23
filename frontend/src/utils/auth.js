@@ -1,5 +1,3 @@
-// export const BASE_URL = 'https://react-mesto.herokuapp.com';
-
 const checkAnswer = (res) => {
   if (res.ok) {
     return res.json();

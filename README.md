@@ -10,35 +10,41 @@
 
 ## **Инструкция:**
 
-Готовое веб-приложение. Для просмотра перейдите по ссылкам ниже.
+Готовое веб-приложение. Для просмотра перейдите по ссылке ниже.
 
-(В данный момент ссылки не активны, так как истекло время работы сервера)
+(Был использован сервис Heroku для демонстрации и деплоя проекта)
 
-[Frontend](https://mesto.nikogriffs.nomoredomains.monster)
+https://react-mesto.herokuapp.com/
 
-[Backend](https://api.mesto.nikogriffs.nomoredomains.work)
+## **Frontend AND Backend**
 
-Публичный IP: 178.154.221.233
+Для одновременного запуска локальной сборки проекта и локального сервера:
+
+```sh
+(`frontend/` folder) npm i
+(`backend/` folder) npm i
+(root folder) npm run dev
+```
 
 ## **Frontend**
 
-Для локальной сборки и запуска проекта:
+Для локальной сборки и запуска проекта (`frontend/` folder):
 
 ```sh
-npm install
-npm run start
-npm run build
+npm i
+npm run start OR npm run build
 ```
 
 ## **Backend**
 
-Для локального запуска проекта с hot-reload:
+Для локального запуска сервера с hot-reload (`backend/` folder):
 
 ```sh
-npm install
+mongod (need MongoDB)
+npm i
 npm run dev
 ```
 
 ## **Планы по доработке:**
 
-Использовать Redux и Typescript в проекте. Перенести проект на новый сервер. Подключить eslint-plugin-prettier для форматирования кода с учётом ESLint.
+Использовать Redux и Typescript в проекте.
