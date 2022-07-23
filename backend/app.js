@@ -30,21 +30,30 @@ const limiter = rateLimit({
 app.use(
   cors({
     credentials: true,
-    origin: '*',
+    origin: 'https://react-mesto.herokuapp.com/',
   })
 );
 
+// app.use(
+//   helmet({
+//     contentSecurityPolicy: {
+//       directives: {
+//         ...helmet.contentSecurityPolicy.getDefaultDirectives(),
+//         'script-src': [
+//           "'self'",
+//           "'unsafe-inline'",
+//           'https://react-mesto.herokuapp.com/',
+//         ],
+//       },
+//     },
+//   })
+// );
+
 app.use(
-  helmet({
-    contentSecurityPolicy: {
-      directives: {
-        ...helmet.contentSecurityPolicy.getDefaultDirectives(),
-        'script-src': [
-          "'self'",
-          "'unsafe-inline'",
-          'https://react-mesto.herokuapp.com/',
-        ],
-      },
+  helmet.contentSecurityPolicy({
+    useDefaults: true,
+    directives: {
+      'img-src': ["'self'", 'https: data:'],
     },
   })
 );
