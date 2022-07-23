@@ -34,26 +34,18 @@ app.use(
   })
 );
 
-// app.use(
-//   helmet({
-//     contentSecurityPolicy: {
-//       directives: {
-//         ...helmet.contentSecurityPolicy.getDefaultDirectives(),
-//         'script-src': [
-//           "'self'",
-//           "'unsafe-inline'",
-//           'https://react-mesto.herokuapp.com/',
-//         ],
-//       },
-//     },
-//   })
-// );
-
 app.use(
-  helmet.contentSecurityPolicy({
-    useDefaults: true,
-    directives: {
-      'img-src': ["'self'", 'https: data:'],
+  helmet({
+    contentSecurityPolicy: {
+      directives: {
+        ...helmet.contentSecurityPolicy.getDefaultDirectives(),
+        'script-src': [
+          "'self'",
+          "'unsafe-inline'",
+          'https://react-mesto.herokuapp.com/',
+        ],
+        'img-src': ["'self'", 'https: data:'],
+      },
     },
   })
 );
