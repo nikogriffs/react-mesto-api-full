@@ -109,7 +109,6 @@ module.exports.login = (req, res, next) => {
       res
         .cookie('jwt', token, {
           maxAge: 3600000,
-          httpOnly: true,
           sameSite: 'none',
         })
         .send({ token });
@@ -123,7 +122,6 @@ module.exports.login = (req, res, next) => {
 module.exports.logout = (req, res) => {
   res
     .clearCookie('jwt', {
-      httpOnly: true,
       sameSite: 'none',
     })
     .send({ message: 'Пользователь вышел из профиля' });
