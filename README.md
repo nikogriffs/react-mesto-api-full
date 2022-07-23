@@ -40,7 +40,6 @@ npm run start OR npm run build
 Для локального запуска сервера с hot-reload (`backend/` folder):
 
 ```sh
-mongod (need MongoDB)
 npm i
 npm run dev
 ```
