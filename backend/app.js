@@ -30,7 +30,10 @@ const limiter = rateLimit({
 app.use(
   cors({
     credentials: true,
-    origin: ['https://localhost:3000', 'http://localhost:3000'],
+    origin: [
+      'https://react-mesto.herokuapp.com/',
+      'http://react-mesto.herokuapp.com/',
+    ],
   })
 );
 app.use(helmet());
