@@ -30,7 +30,7 @@ const limiter = rateLimit({
 app.use(
   cors({
     credentials: true,
-    origin: 'https://react-mesto.herokuapp.com/',
+    origin: '*',
   })
 );
 
