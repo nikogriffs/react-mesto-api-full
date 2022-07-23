@@ -71,7 +71,7 @@ class Api {
 }
 
 const api = new Api({
-  baseUrl: 'http://localhost:5000',
+  baseUrl: 'https://react-mesto.herokuapp.com',
 });
 
 export default api;
