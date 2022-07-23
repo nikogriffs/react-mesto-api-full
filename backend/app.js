@@ -30,6 +30,7 @@ const limiter = rateLimit({
 app.use(
   cors({
     credentials: true,
+    origin: 'https://react-mesto.herokuapp.com/',
   })
 );
 
@@ -42,7 +43,6 @@ app.use(
           "'self'",
           "'unsafe-inline'",
           'https://react-mesto.herokuapp.com/',
-          'http://localhost:5000',
         ],
       },
     },
@@ -103,12 +103,12 @@ app.use('/cards', auth, require('./routes/cards'));
 
 app.use(errorLogger);
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '/../frontend/build/index.html'));
-});
-
 app.use('*', () => {
   throw new NotFoundError('Запрашиваемый ресурс не найден');
+});
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '/../frontend/build/index.html'));
 });
 
 app.use(errors());
