@@ -30,7 +30,6 @@ const limiter = rateLimit({
 app.use(
   cors({
     credentials: true,
-    origin: '*',
   })
 );
 
@@ -104,12 +103,12 @@ app.use('/cards', auth, require('./routes/cards'));
 
 app.use(errorLogger);
 
-app.use('*', () => {
-  throw new NotFoundError('Запрашиваемый ресурс не найден');
-});
-
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '/../frontend/build/index.html'));
+});
+
+app.use('*', () => {
+  throw new NotFoundError('Запрашиваемый ресурс не найден');
 });
 
 app.use(errors());
