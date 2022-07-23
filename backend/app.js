@@ -31,6 +31,8 @@ app.use(
   cors({
     credentials: true,
     origin: [
+      'https://localhost:3000',
+      'http://localhost:3000',
       'https://react-mesto.herokuapp.com/',
       'http://react-mesto.herokuapp.com/',
     ],
