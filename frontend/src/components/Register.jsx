@@ -1,23 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { initialValues } from '../utils/constants';
 
-function Register(props) {
-  const [email, setEmail] = React.useState('');
-  const [password, setPassword] = React.useState('');
+const Register = ({ onSubmitRegister }) => {
+  const [values, setValues] = useState(initialValues);
 
-  function handleChangeEmail(e) {
-    setEmail(e.target.value);
-  }
+  const handleChange = (e) => {
+    const { name, value } = e.target;
 
-  function handleChangePassword(e) {
-    setPassword(e.target.value);
-  }
+    setValues({ ...values, [name]: value });
+  };
 
-  function handleSubmit(e) {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
-    props.onRegister(email, password);
-  }
+    onSubmitRegister(values);
+  };
 
   return (
     <div className="authorization">
@@ -29,8 +27,8 @@ function Register(props) {
             id="email"
             name="email"
             type="email"
-            onChange={handleChangeEmail}
-            value={email}
+            onChange={handleChange}
+            value={values.email}
             placeholder="Email"
           />
 
@@ -39,8 +37,8 @@ function Register(props) {
             id="password"
             name="password"
             type="password"
-            onChange={handleChangePassword}
-            value={password}
+            onChange={handleChange}
+            value={values.password}
             placeholder="Пароль"
           />
 
@@ -52,12 +50,12 @@ function Register(props) {
 
       <div className="authorization__menu-link">
         <span>Уже зарегистрированы? </span>
-        <Link to="/signin" className="authorization__link">
+        <Link to="/sign-in" className="authorization__link">
           Войти
         </Link>
       </div>
     </div>
   );
-}
+};
 
 export default Register;
