@@ -23,7 +23,8 @@
   "keywords": [],
   "devDependencies": {
     "concurrently": "^7.3.0",
-    "nodemon": "^2.0.19"
+    "nodemon": "^2.0.19",
+    "prettier": "^2.7.1"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

@@ -102,14 +102,14 @@ app.get('/logout', logout);
 app.use('/users', auth, require('./routes/users'));
 app.use('/cards', auth, require('./routes/cards'));
 
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '/../frontend/build/index.html'));
+});
+
 app.use(errorLogger);
 
 app.use('*', () => {
   throw new NotFoundError('Запрашиваемый ресурс не найден');
-});
-
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '/../frontend/build/index.html'));
 });
 
 app.use(errors());

@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import PopupWithForm from './PopupWithForm.js';
+import PopupWithForm from './PopupWithForm';
 
 function AddPlacePopup(props) {
   const placeRef = useRef();

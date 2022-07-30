@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import Header from './Header.js';
-import Main from './Main.js';
-import Footer from './Footer.js';
-import EditProfilePopup from './EditProfilePopup.js';
-import AddPlacePopup from './AddPlacePopup.js';
-import EditAvatarPopup from './EditAvatarPopup.js';
-import ImagePopup from './ImagePopup.js';
-import api from '../utils/api.js';
-import { CurrentUserContext } from '../contexts/CurrentUserContext.js';
-import ProtectedRoute from './ProtectedRoute.js';
+import Header from './Header';
+import Main from './Main';
+import Footer from './Footer';
+import EditProfilePopup from './EditProfilePopup';
+import AddPlacePopup from './AddPlacePopup';
+import EditAvatarPopup from './EditAvatarPopup';
+import ImagePopup from './ImagePopup';
+import api from '../utils/api';
+import { CurrentUserContext } from '../contexts/CurrentUserContext';
+import ProtectedRoute from './ProtectedRoute';
 import { Route, Switch, useHistory } from 'react-router-dom';
-import Login from './Login.js';
-import Register from './Register.js';
-import InfoTooltip from './InfoTooltip.js';
+import Login from './Login';
+import Register from './Register';
+import InfoTooltip from './InfoTooltip';
 import * as auth from '../utils/auth';
 
 function App() {
