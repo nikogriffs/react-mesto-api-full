@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { initialValues } from '../utils/constants';
 
-const Register = ({ onSubmitRegister }) => {
+const Register = ({ onRegisterFormSubmit }) => {
   const [values, setValues] = useState(initialValues);
 
   const handleChange = (e) => {
@@ -14,7 +14,7 @@ const Register = ({ onSubmitRegister }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    onSubmitRegister(values);
+    onRegisterFormSubmit(values);
   };
 
   return (

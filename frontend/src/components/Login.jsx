@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { initialValues } from '../utils/constants';
 
-const Login = ({ onSubmitLogin }) => {
+const Login = ({ onLoginFormSubmit }) => {
   const [values, setValues] = useState(initialValues);
 
   const handleChange = (e) => {
@@ -13,7 +13,7 @@ const Login = ({ onSubmitLogin }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    onSubmitLogin(values);
+    onLoginFormSubmit(values);
   };
 
   return (

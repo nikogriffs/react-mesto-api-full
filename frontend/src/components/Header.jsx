@@ -1,19 +1,19 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import logoPath from '../images/logo.png';
+import logo from '../images/logo.png';
 
-function Header(props) {
+const Header = ({ isLoggedIn, onLogoutButtonClick, email }) => {
   return (
     <header className="header">
-      <img src={logoPath} alt="Логотип сайта Место" className="header__logo" />
+      <img src={logo} alt="Логотип сайта Место" className="header__logo" />
       <nav className="header__menu">
-        {props.loggedIn ? (
+        {isLoggedIn ? (
           <>
-            <p className="header__email">{props.email}</p>
+            <p className="header__email">{email}</p>
             <NavLink
               to="/login"
               className="header__link header__link_logged"
-              onClick={props.onSignOut}
+              onClick={onLogoutButtonClick}
             >
               Выйти
             </NavLink>
@@ -39,6 +39,6 @@ function Header(props) {
       </nav>
     </header>
   );
-}
+};
 
 export default Header;
