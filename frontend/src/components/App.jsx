@@ -135,7 +135,7 @@ const App = () => {
       });
   }
 
-  function handleRegisterFormSubmit(email, password) {
+  function handleRegisterFormSubmit({ email, password }) {
     auth
       .register(email, password)
       .then(() => {
@@ -150,7 +150,7 @@ const App = () => {
       });
   }
 
-  function handleLoginFormSubmit(email, password) {
+  function handleLoginFormSubmit({ email, password }) {
     auth
       .authorize(email, password)
       .then(() => {

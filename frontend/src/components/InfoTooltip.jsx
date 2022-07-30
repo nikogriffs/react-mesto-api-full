@@ -1,29 +1,29 @@
 import React from 'react';
-import successPath from '../images/success.svg';
-import failPath from '../images/fail.svg';
+import successLogo from '../images/success.svg';
+import failLogo from '../images/fail.svg';
 
-function InfoTooltip(props) {
+const InfoTooltip = ({ isOpen, isSuccessfulMessage, onClose }) => {
   return (
-    <div className={`popup ${props.isOpen ? 'popup_opened' : ''}`}>
+    <div className={`popup ${isOpen ? 'popup_opened' : ''}`}>
       <div className="popup__container">
         <img
-          src={props.isSuccess ? successPath : failPath}
+          src={isSuccessfulMessage ? successLogo : failLogo}
           className="popup__infotooltip-image"
           alt="Иконка результата"
         />
         <h2 className="popup__infotooltip-title">
-          {props.isSuccess
+          {isSuccessfulMessage
             ? 'Вы успешно зарегистрировались!'
             : 'Что-то пошло не так! Попробуйте ещё раз.'}
         </h2>
         <button
           type="button"
           className="popup__close-button"
-          onClick={props.onClose}
+          onClick={onClose}
         />
       </div>
     </div>
   );
-}
+};
 
 export default InfoTooltip;

@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
-function Card({ card, onCardClick, onCardLike, onCardDelete }) {
-  const currentUser = React.useContext(CurrentUserContext);
+const Card = ({ card, onCardClick, onCardLike, onCardDelete }) => {
+  const currentUser = useContext(CurrentUserContext);
 
   const isOwn = card.owner === currentUser._id;
   const cardDeleteButtonClassName = `places__trash-button ${
@@ -50,6 +50,6 @@ function Card({ card, onCardClick, onCardLike, onCardDelete }) {
       />
     </li>
   );
-}
+};
 
 export default Card;
