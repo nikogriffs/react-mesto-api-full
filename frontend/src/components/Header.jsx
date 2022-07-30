@@ -11,7 +11,7 @@ function Header(props) {
           <>
             <p className="header__email">{props.email}</p>
             <NavLink
-              to="/signin"
+              to="/login"
               className="header__link header__link_logged"
               onClick={props.onSignOut}
             >
@@ -21,14 +21,14 @@ function Header(props) {
         ) : (
           <>
             <NavLink
-              to="/signup"
+              to="/register"
               className="header__link"
               activeStyle={{ display: 'none' }}
             >
               Регистрация
             </NavLink>
             <NavLink
-              to="/signin"
+              to="/login"
               className="header__link"
               activeStyle={{ display: 'none' }}
             >

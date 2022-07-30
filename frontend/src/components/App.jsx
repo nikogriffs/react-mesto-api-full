@@ -147,7 +147,7 @@ function App() {
     auth
       .register(email, password)
       .then(() => {
-        history.push('/sign-in');
+        history.push('/login');
         setIsInfoTooltipPopupOpen(true);
         setIsSuccess(true);
       })
@@ -176,7 +176,7 @@ function App() {
   function handleSignOut() {
     auth.logout().then(() => {
       setLoggedIn(false);
-      history.push('/sign-in');
+      history.push('/login');
     });
   }
 
@@ -199,12 +199,12 @@ function App() {
           onCardDelete={handleCardDelete}
         />
 
-        <Route path="/sign-up">
-          <Register onSubmitRegiste={handleRegister} />
+        <Route path="/register">
+          <Register onSubmitRegister={handleRegister} />
         </Route>
 
-        <Route path="/sign-in">
-          <Login onLogin={handleLogin} />
+        <Route path="/login">
+          <Login onSubmitLogin={handleLogin} />
         </Route>
       </Switch>
 

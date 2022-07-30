@@ -73,7 +73,7 @@ app.get('/crash-test', () => {
 app.use(express.static(path.join(__dirname, '../frontend/build')));
 
 app.post(
-  '/signin',
+  '/login',
   celebrate({
     body: Joi.object().keys({
       email: Joi.string().required().email(),
@@ -84,7 +84,7 @@ app.post(
 );
 
 app.post(
-  '/signup',
+  '/register',
   celebrate({
     body: Joi.object().keys({
       name: Joi.string().min(2).max(30),

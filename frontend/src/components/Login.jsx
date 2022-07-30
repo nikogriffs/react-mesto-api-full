@@ -1,22 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { initialValues } from '../utils/constants';
 
-function Login(props) {
-  const [email, setEmail] = React.useState('');
-  const [password, setPassword] = React.useState('');
+const Login = ({ onSubmitLogin }) => {
+  const [values, setValues] = useState(initialValues);
 
-  function handleChangeEmail(e) {
-    setEmail(e.target.value);
-  }
+  const handleChange = (e) => {
+    const { name, value } = e.target;
 
-  function handleChangePassword(e) {
-    setPassword(e.target.value);
-  }
+    setValues({ ...values, [name]: value });
+  };
 
-  function handleSubmit(e) {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
-    props.onLogin(email, password);
-  }
+    onSubmitLogin(values);
+  };
 
   return (
     <div className="authorization">
@@ -28,8 +26,8 @@ function Login(props) {
             id="email"
             name="email"
             type="email"
-            onChange={handleChangeEmail}
-            value={email}
+            onChange={handleChange}
+            value={values.email}
             placeholder="Email"
           />
 
@@ -38,8 +36,8 @@ function Login(props) {
             id="password"
             name="password"
             type="password"
-            onChange={handleChangePassword}
-            value={password}
+            onChange={handleChange}
+            value={values.password}
             placeholder="Пароль"
           />
 
@@ -50,6 +48,6 @@ function Login(props) {
       </form>
     </div>
   );
-}
+};
 
 export default Login;

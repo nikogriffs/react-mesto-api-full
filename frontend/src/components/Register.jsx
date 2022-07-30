@@ -50,7 +50,7 @@ const Register = ({ onSubmitRegister }) => {
 
       <div className="authorization__menu-link">
         <span>Уже зарегистрированы? </span>
-        <Link to="/sign-in" className="authorization__link">
+        <Link to="/login" className="authorization__link">
           Войти
         </Link>
       </div>

@@ -6,7 +6,7 @@ const checkAnswer = (res) => {
 };
 
 export const register = (email, password) => {
-  return fetch(`/signup`, {
+  return fetch(`/register`, {
     method: 'POST',
     credentials: 'include',
     headers: {
@@ -18,7 +18,7 @@ export const register = (email, password) => {
 };
 
 export const authorize = (email, password) => {
-  return fetch(`/signin`, {
+  return fetch(`/login`, {
     method: 'POST',
     credentials: 'include',
     headers: {
