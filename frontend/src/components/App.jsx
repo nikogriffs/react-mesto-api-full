@@ -14,6 +14,7 @@ import AddPlacePopup from './AddPlacePopup';
 import ImagePopup from './ImagePopup';
 import api from '../utils/api';
 import * as auth from '../utils/auth';
+import { defaultUserContext } from '../utils/constants';
 
 const App = () => {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
@@ -21,7 +22,7 @@ const App = () => {
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
   const [isInfoTooltipPopupOpen, setIsInfoTooltipPopupOpen] = useState(false);
 
-  const [currentUser, setCurrentUser] = useState({});
+  const [currentUser, setCurrentUser] = useState(defaultUserContext);
   const [cards, setCards] = useState([]);
   const [selectedCard, setSelectedCard] = useState(null);
 
@@ -47,19 +48,19 @@ const App = () => {
   useEffect(() => {
     auth
       .checkToken()
-      .then((res) => {
+      .then(({ email }) => {
         setIsLoggedIn(true);
         history.push('/');
-        setEmail(res.email);
+        setEmail(email);
       })
       .catch((err) => {
         console.log(err);
       });
   }, [history]);
 
-  function handleEditProfileSubmit(data) {
+  function handleEditProfileSubmit({ name, about }) {
     api
-      .setUserInfo(data.name, data.about)
+      .setUserInfo(name, about)
       .then((user) => {
         setCurrentUser(user);
         closeAllPopups();
@@ -69,9 +70,9 @@ const App = () => {
       });
   }
 
-  function handleEditAvatarSubmit(data) {
+  function handleEditAvatarSubmit(avatar) {
     api
-      .updateAvatar(data.avatar)
+      .updateAvatar(avatar)
       .then((user) => {
         setCurrentUser(user);
         closeAllPopups();
@@ -81,9 +82,9 @@ const App = () => {
       });
   }
 
-  function handleAddPlaceSubmit(data) {
+  function handleAddPlaceSubmit({ name, link }) {
     api
-      .createCard(data.name, data.link)
+      .createCard(name, link)
       .then((newCard) => {
         setCards([newCard, ...cards]);
         closeAllPopups();
@@ -113,7 +114,7 @@ const App = () => {
     const isLiked = card.likes.some((like) => like === currentUser._id);
 
     api
-      .changeLikeCardStatus(card._id, isLiked)
+      .toggleLikeButton(card._id, isLiked)
       .then((newCard) => {
         setCards((state) =>
           state.map((c) => (c._id === card._id ? newCard : c))
@@ -126,7 +127,7 @@ const App = () => {
 
   function handleCardDelete(card) {
     api
-      .delCard(card._id)
+      .deleteCard(card._id)
       .then(() => {
         setCards((state) => state.filter((c) => c._id !== card._id));
       })

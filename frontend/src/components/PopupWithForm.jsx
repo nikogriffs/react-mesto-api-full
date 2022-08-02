@@ -4,7 +4,7 @@ const PopupWithForm = ({
   children,
   name,
   title,
-  submitBtnText,
+  submitButtonText,
   isOpen,
   onSubmit,
   onClose,
@@ -22,7 +22,7 @@ const PopupWithForm = ({
           <fieldset className="popup__fieldset">
             {children}
             <button type="submit" className="popup__save-button">
-              {submitBtnText}
+              {submitButtonText}
             </button>
           </fieldset>
         </form>

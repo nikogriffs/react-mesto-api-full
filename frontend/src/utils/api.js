@@ -1,5 +1,5 @@
 class Api {
-  _checkAnswer(res) {
+  _checkResponse(res) {
     if (res.ok) {
       return res.json();
     }
@@ -9,24 +9,24 @@ class Api {
   getInitialCards() {
     return fetch(`/cards`, {
       credentials: 'include',
-    }).then(this._checkAnswer);
+    }).then(this._checkResponse);
   }
 
   getUserInfo() {
     return fetch(`/users/me`, {
       credentials: 'include',
-    }).then(this._checkAnswer);
+    }).then(this._checkResponse);
   }
 
-  setUserInfo(name, job) {
+  setUserInfo(name, about) {
     return fetch(`/users/me`, {
       method: 'PATCH',
       credentials: 'include',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ name: name, about: job }),
-    }).then(this._checkAnswer);
+      body: JSON.stringify({ name, about }),
+    }).then(this._checkResponse);
   }
 
   createCard(name, link) {
@@ -36,22 +36,22 @@ class Api {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ name: name, link: link }),
-    }).then(this._checkAnswer);
+      body: JSON.stringify({ name, link }),
+    }).then(this._checkResponse);
   }
 
-  changeLikeCardStatus(cardId, isLiked) {
+  toggleLikeButton(cardId, isLiked) {
     return fetch(`/cards/${cardId}/likes/`, {
       method: isLiked ? 'DELETE' : 'PUT',
       credentials: 'include',
-    }).then(this._checkAnswer);
+    }).then(this._checkResponse);
   }
 
-  delCard(cardId) {
+  deleteCard(cardId) {
     return fetch(`/cards/${cardId}`, {
       method: 'DELETE',
       credentials: 'include',
-    }).then(this._checkAnswer);
+    }).then(this._checkResponse);
   }
 
   updateAvatar(avatar) {
@@ -61,8 +61,8 @@ class Api {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ avatar: avatar }),
-    }).then(this._checkAnswer);
+      body: JSON.stringify({ avatar }),
+    }).then(this._checkResponse);
   }
 }
 

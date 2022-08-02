@@ -1,21 +1,21 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { initialValues } from '../utils/constants';
+import { initialAuthValues } from '../utils/constants';
 
 const Register = ({ onRegisterFormSubmit }) => {
-  const [values, setValues] = useState(initialValues);
+  const [values, setValues] = useState(initialAuthValues);
 
-  const handleChange = (e) => {
+  function handleChange(e) {
     const { name, value } = e.target;
 
     setValues({ ...values, [name]: value });
-  };
+  }
 
-  const handleSubmit = (e) => {
+  function handleSubmit(e) {
     e.preventDefault();
 
     onRegisterFormSubmit(values);
-  };
+  }
 
   return (
     <div className="authorization">

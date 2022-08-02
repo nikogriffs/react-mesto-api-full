@@ -1,4 +1,4 @@
-const checkAnswer = (res) => {
+const checkResponse = (res) => {
   if (res.ok) {
     return res.json();
   }
@@ -14,7 +14,7 @@ export const register = (email, password) => {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({ email, password }),
-  }).then(checkAnswer);
+  }).then(checkResponse);
 };
 
 export const authorize = (email, password) => {
@@ -26,19 +26,19 @@ export const authorize = (email, password) => {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({ email, password }),
-  }).then(checkAnswer);
+  }).then(checkResponse);
 };
 
 export const checkToken = () => {
   return fetch(`/users/me`, {
     method: 'GET',
     credentials: 'include',
-  }).then(checkAnswer);
+  }).then(checkResponse);
 };
 
 export const logout = () => {
   return fetch(`/logout`, {
     method: 'GET',
     credentials: 'include',
-  }).then(checkAnswer);
+  }).then(checkResponse);
 };
